@@ -1,0 +1,62 @@
+CREATE TABLE FamousPeople (id INTEGER PRIMARY KEY,  name TEXT);
+
+INSERT INTO FamousPeople VALUES (1, 'Ian Somerhalder');
+INSERT INTO FamousPeople VALUES (2, 'Zach Braff');
+INSERT INTO FamousPeople VALUES (3, 'Nina Dobrev');
+INSERT INTO FamousPeople VALUES (4, 'Donald Faison');
+INSERT INTO FamousPeople VALUES (5, 'Paul Wesley');
+INSERT INTO FamousPeople VALUES (6, 'Sarah Chalke');
+INSERT INTO FamousPeople VALUES (7, 'Kat Graham');
+INSERT INTO FamousPeople VALUES (8, 'Judy Reyes');
+INSERT INTO FamousPeople VALUES (9, 'Candice King');
+INSERT INTO FamousPeople VALUES (10, 'John McGinley');
+
+
+CREATE TABLE TVShows (star_id INTEGER, character TEXT, show_name TEXT, character2 TEXT);
+
+INSERT INTO TVShows VALUES (1, 'Damon Salvatore', 'The Vampire Diaries', 'Elena Gilbert');
+INSERT INTO TVShows VALUES (2, 'John Dorian', 'Scrubs', 'Elliot Reid');
+INSERT INTO TVShows VALUES (3, 'Elena Gilbert', 'The Vampire Diaries', NULL);
+INSERT INTO TVShows VALUES (4, 'Christopher Turk', 'Scrubs', 'Carla Espinosa');
+INSERT INTO TVShows VALUES (5, 'Stefan Salvatore', 'The Vampire Diaries', 'Caroline Forbes');
+INSERT INTO TVShows VALUES (6, 'Elliot Reid', 'Scrubs', NULL);
+INSERT INTO TVShows VALUES (7, 'Bonnie Bennett', 'The Vampire Diaries', NULL);
+INSERT INTO TVShows VALUES (8, 'Carla Espinosa', 'Scrubs', NULL);
+INSERT INTO TVShows VALUES (9, 'Caroline Forbes', 'The Vampire Diaries', NULL);
+INSERT INTO TVShows VALUES (10, 'Perry Cox', 'Scrubs', NULL);
+
+
+
+CREATE TABLE Movies (star_id INTEGER, character TEXT, movie_name TEXT);
+
+INSERT INTO Movies VALUES (2, 'Aidan Bloom', 'Wish I Were Here');
+INSERT INTO Movies VALUES (1, 'Harkin Langham', 'The Anomaly');
+INSERT INTO Movies VALUES (4, 'Acapella Singer', 'Pitch Perfect');
+INSERT INTO Movies VALUES (3, 'Parker McDermott', 'The Out-Laws');
+INSERT INTO Movies VALUES (6, 'Frankie Riceborough', 'Eat Wheaties');
+INSERT INTO Movies VALUES (5, 'Charlie', 'The Late Bloomer');
+INSERT INTO Movies VALUES (8, 'Donna', 'All Together Now');
+INSERT INTO Movies VALUES (7, 'Tamira', 'Collide');
+INSERT INTO Movies VALUES (10, 'Don', 'Benched');
+INSERT INTO Movies VALUES (9, 'Kimberly', 'After We Collided'); 
+
+
+/* What TV shows did the Famous People star in and what character did they play? */
+SELECT FP.name AS Star, TV.character AS Character, TV.show_name AS Show 
+    FROM FamousPeople AS FP 
+    JOIN TVShows AS TV 
+    ON FP.id=TV.star_id;
+    
+
+/* What movies did the Famous People star in and what character did they play? */
+SELECT FP.name AS Star, M.character AS Character, M.movie_name AS Movie
+    FROM FamousPeople AS FP
+    JOIN Movies AS M
+    ON FP.id=M.star_id;
+    
+    
+/* Show which characters dated in their show with their show name. */    
+SELECT character AS Partner_One, character2 AS Partner_2, show_name AS Show 
+    FROM TVShows 
+    WHERE character2 IS NOT NULL;
+    
